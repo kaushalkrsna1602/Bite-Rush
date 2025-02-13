@@ -13,9 +13,9 @@ const App = () => {
     <div>
       
       <Routes>  
-        <Route path='/' element={<AllRestraunts />} />
-        <Route path='/landing' element={<Landing />} />
-        {/* <Route path='/restraunts' element={<AllRestraunts />} /> */}
+        <Route path='/' element={<Landing />} />
+        {/* <Route path='/landing' element={<Landing />} /> */}
+        <Route path='/restraunts' element={<AllRestraunts />} />
         <Route path='/menu/:id' element ={<Menu/>} />
         <Route path='/carrestaurants/:id' element={<CarouselRestaurants  />} />
         <Route path='/search' element ={<Search />} />
