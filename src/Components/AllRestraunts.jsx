@@ -6,6 +6,7 @@ import TopRestraunts from './TopRestraunts'
 import Footer from './Footer'
 import ResinCity from './ResinCity'
 import ShimmerUI from './ShimmerUI'
+import CorsError from './CorsError'
 
 
 const AllRestraunts = () => {
@@ -26,6 +27,7 @@ const AllRestraunts = () => {
   
   return (
     <div>
+    {apiData ? (<>
       <Navbar/>
       {
         apiData ? (
@@ -41,6 +43,8 @@ const AllRestraunts = () => {
       }
       
       <Footer/>
+    
+    </>) : <CorsError/>} 
     </div>
   )
 }
