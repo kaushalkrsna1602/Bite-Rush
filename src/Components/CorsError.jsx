@@ -6,25 +6,27 @@ const CorsError = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-black text-white p-4">
-      <div className="bg-white bg-opacity-10 p-8 shadow-lg rounded-lg text-center backdrop-filter backdrop-blur-lg">
-        <h1 className="text-6xl font-extrabold mb-4 text-red-400">CORS Error</h1>
-        <p className="text-xl mb-4">It seems that CORS is not enabled in your browser.</p>
-        <p className="text-lg mb-4">Please enable CORS to access Bite Rush.</p>
+    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white p-6">
+      <div className="bg-white bg-opacity-10 p-8 shadow-2xl rounded-2xl text-center backdrop-filter backdrop-blur-lg border border-gray-600 max-w-md">
+        <h1 className="text-5xl font-extrabold mb-4 text-red-500 animate-pulse">CORS Error</h1>
+        <p className="text-lg mb-4">Oops! It looks like CORS is not enabled in your browser.</p>
+        <p className="text-md mb-6 opacity-80">To access Bite Rush, please enable CORS.</p>
+
         <a
           href="https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf"
-          className="mt-4 px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition duration-200"
+          className="mt-4 px-5 py-3 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 transition-transform transform hover:scale-105 inline-block"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Click here to download the CORS extension
+          Install CORS Extension 🚀
         </a>
-        <p className="text-lg mt-4 mb-2">If CORS is installed and allowed,</p>
+
+        <p className="text-md mt-6 mb-2 opacity-90">Already installed and enabled?</p>
         <button
           onClick={handleRefresh}
-          className="mt-2 px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition duration-200"
+          className="px-5 py-3 bg-gray-800 text-white rounded-lg shadow-md hover:bg-gray-700 transition-transform transform hover:scale-105"
         >
-          Refresh Page
+          Refresh Page 🔄
         </button>
       </div>
     </div>
