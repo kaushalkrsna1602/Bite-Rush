@@ -1,93 +1,47 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const CartSlice = createSlice({
-    name : "Cart",
-    initialState : [],
-    reducers : {
-        addToCart : (state, action) => {
-            // console.log("Function chala")
-            // const{name, price} = action.payload
-            // state.push({name : name, price : price})
-        
-            // console.log(action)
-            const foundItem = state.find((item) => {
-                return item.name == action.payload.name
-            })
-
-            if(!foundItem)
-            {
-                state.push({img : action.payload.img ,name : action.payload.name, price : action.payload.price, quantity : 1, isVeg : action.payload.isVeg})
-            }
-            else
-            {
-                let nArr = state.filter((item) => {
-                    return item.name != action.payload.name
-                })
-
-                nArr.push({name : foundItem.name, price : foundItem.price, quantity : foundItem.quantity + 1, isVeg : foundItem.isVeg, img : foundItem.img})
+    name: "Cart",
+    initialState: [],
+    reducers: {
+        addToCart: (state, action) => {
+            const { img, name, price, isVeg } = action.payload;
+            const existingItem = state.find(item => item.name === name);
             
-                while(state.length)
-                {
-                    state.pop()
-                }
-
-                while(nArr.length)
-                {
-                    state.push(nArr.pop())
-                }
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                state.push({ 
+                    img, 
+                    name, 
+                    price, 
+                    quantity: 1, 
+                    isVeg 
+                });
             }
-        
         },
 
-
-        removeFromCart : (state, action) => {
-            const foundItem = state.find((item) => {
-                return item.name == action.payload.name
-            })
-
-            // console.log(foundItem)
-
-            if(foundItem.quantity == 1)
-            {
-                let nArr = state.filter((item) => {
-                    return item.name != action.payload.name
-                })
-
-
-                while(state.length)
-                    {
-                        state.pop()
-                    }
-    
-                    while(nArr.length)
-                    {
-                        state.push(nArr.pop())
-                    }
-
-            }
-            else
-            {
-                let nArr = state.filter((item) => {
-                    return item.name != action.payload.name
-                })
-
-                nArr.push({name : foundItem.name, price : foundItem.price, quantity : foundItem.quantity - 1, isVeg : foundItem.isVeg, img : foundItem.img})
+        removeFromCart: (state, action) => {
+            const { name } = action.payload;
+            const existingItemIndex = state.findIndex(item => item.name === name);
             
-                while(state.length)
-                    {
-                        state.pop()
-                    }
-    
-                    while(nArr.length)
-                    {
-                        state.push(nArr.pop())
-                    }
+            if (existingItemIndex !== -1) {
+                const existingItem = state[existingItemIndex];
+                
+                if (existingItem.quantity === 1) {
+                    state.splice(existingItemIndex, 1);
+                } else {
+                    existingItem.quantity -= 1;
+                }
             }
         }
 
+        // Bonus: Add a clearCart reducer if needed
+        // clearCart: (state) => {
+        //     return [];
+        // }
     }
-})
+});
 
-
-export default CartSlice.reducer
-export const{addToCart, removeFromCart} = CartSlice.actions
+export default CartSlice.reducer;
+export const { addToCart, removeFromCart } = CartSlice.actions;
